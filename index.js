@@ -4,7 +4,7 @@ const {
   readJSONFile,
   writeJSONFile,
 } = require('./src/helpers');
-const { index, create } = require('./src/itemController');
+const { index, create, show } = require('./src/itemController');
 
 function run() {
   const inform = console.log;
@@ -29,6 +29,10 @@ function run() {
       );
       updatedItems = create(items, item, priceInCents, itemAvailability);
       writeToFile = true;
+      break;
+    case 'show':
+      const itemView = show(items, item);
+      inform(`**Item Details:\n------------\n${itemView}`);
       break;
   }
   if (writeToFile) {

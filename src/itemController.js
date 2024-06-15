@@ -28,4 +28,17 @@ function create(items, itemName, priceInCents, itemAvailability) {
   return items;
 }
 
-module.exports = { index, create };
+function show(items, itemId) {
+  const item = items.find((item) => item.id === itemId);
+  return (
+    item.name +
+    ' ' +
+    item.id +
+    ' ' +
+    item.priceInCents +
+    ' ' +
+    item.itemAvailability
+  );
+}
+
+module.exports = { index, create, show };
