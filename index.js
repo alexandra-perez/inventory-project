@@ -1,4 +1,9 @@
-const { readJSONFile, writeJSONFile } = require('./src/helpers');
+const {
+  readFileSync,
+  writeFileSync,
+  readJSONFile,
+  writeJSONFile,
+} = require('./src/helpers');
 const { index, create } = require('./src/itemController');
 
 function run() {
@@ -15,6 +20,13 @@ function run() {
       break;
     case 'create':
       inform(action);
+      updatedItems = create(items, item);
+      writeToFile = true;
       break;
   }
+    if (writeToFile) {
+        writeJSONFile('./data', 'items.json', updatedItems)
+    }
 }
+
+run();
