@@ -12,7 +12,7 @@ function run() {
   const action = process.argv[2];
 
   const item = process.argv[3];
-  const itemPriceInCents = process.argv[4];
+  const priceInCents = process.argv[4];
   const itemAvailability = process.argv[5];
 
   let writeToFile = false;
@@ -20,12 +20,15 @@ function run() {
 
   switch (action) {
     case 'index':
-      inform(action);
+      const itemsView = index(items);
+      inform(`~~~My Inventory~~~\n${itemsView}`);
       break;
     case 'create':
-          inform("Item created!\n~~~~~~~~~~\nRun the command 'npm run index' to see the full list of items.");
-          updatedItems = create(items, item, itemPriceInCents, itemAvailability);
-          writeToFile = true;
+      inform(
+        "Item created!\n~~~~~~~~~~\nRun the command 'npm run index' to see the full list of items."
+      );
+      updatedItems = create(items, item, priceInCents, itemAvailability);
+      writeToFile = true;
       break;
   }
   if (writeToFile) {

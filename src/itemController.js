@@ -1,16 +1,31 @@
 const { nanoid } = require('nanoid');
 
-function create(items, itemName, itemPriceInCents, itemAvailability) {
-    const item = {
-        name: itemName,
-        id: nanoid(12),
-        itemPriceInCents: itemPriceInCents,
-        inStock: itemAvailability
-    };
-
-    items.push(item);
-
-    return items;
+function index(items) {
+  return items
+    .map(
+      (item) =>
+        item.name +
+        ' ' +
+        item.id +
+        ' ' +
+        item.priceInCents +
+        ' ' +
+        item.itemAvailability
+    )
+    .join('\n');
 }
 
-module.exports = { create };
+function create(items, itemName, priceInCents, itemAvailability) {
+  const item = {
+    name: itemName,
+    id: nanoid(12),
+    priceInCents: priceInCents,
+    inStock: itemAvailability,
+  };
+
+  items.push(item);
+
+  return items;
+}
+
+module.exports = { index, create };
