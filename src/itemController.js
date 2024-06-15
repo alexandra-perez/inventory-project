@@ -1,5 +1,6 @@
 const { nanoid } = require('nanoid');
 
+// Show all items
 function index(items) {
   return items
     .map(
@@ -15,6 +16,7 @@ function index(items) {
     .join('\n');
 }
 
+// Create a new item
 function create(items, itemName, priceInCents, itemAvailability) {
   const item = {
     name: itemName,
@@ -28,6 +30,7 @@ function create(items, itemName, priceInCents, itemAvailability) {
   return items;
 }
 
+// Show an individual item by id 
 function show(items, itemId) {
   const item = items.find((item) => item.id === itemId);
   return (
