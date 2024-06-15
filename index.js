@@ -10,7 +10,11 @@ function run() {
   const inform = console.log;
   const items = readJSONFile('./data', 'items.json');
   const action = process.argv[2];
+
   const item = process.argv[3];
+  const itemPriceInCents = process.argv[4];
+  const itemAvailability = process.argv[5];
+
   let writeToFile = false;
   let updatedItems = [];
 
@@ -20,13 +24,13 @@ function run() {
       break;
     case 'create':
       inform(action);
-      updatedItems = create(items, item);
+      updatedItems = create(items, item, itemPriceInCents, itemAvailability);
       writeToFile = true;
       break;
   }
-    if (writeToFile) {
-        writeJSONFile('./data', 'items.json', updatedItems)
-    }
+  if (writeToFile) {
+    writeJSONFile('./data', 'items.json', updatedItems);
+  }
 }
 
 run();
