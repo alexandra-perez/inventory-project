@@ -23,9 +23,9 @@ function run() {
       inform(action);
       break;
     case 'create':
-      inform(action);
-      updatedItems = create(items, item, itemPriceInCents, itemAvailability);
-      writeToFile = true;
+          inform("Item created!\n~~~~~~~~~~\nRun the command 'npm run index' to see the full list of items.");
+          updatedItems = create(items, item, itemPriceInCents, itemAvailability);
+          writeToFile = true;
       break;
   }
   if (writeToFile) {
