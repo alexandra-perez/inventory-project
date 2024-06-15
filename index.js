@@ -4,7 +4,7 @@ const {
   readJSONFile,
   writeJSONFile,
 } = require('./src/helpers');
-const { index, create, show } = require('./src/itemController');
+const { index, create, show, update } = require('./src/itemController');
 
 function run() {
   const inform = console.log;
@@ -33,6 +33,10 @@ function run() {
     case 'show':
       const itemView = show(items, item);
       inform(`**Item Details:\n------------\n${itemView}`);
+      break;
+    case 'update':
+      updatedItems = update(items);
+      inform('Item successfully updated. ');
       break;
   }
   if (writeToFile) {
