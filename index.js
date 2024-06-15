@@ -36,7 +36,7 @@ function run() {
       break;
     case 'update':
       updatedItems = update(items);
-      inform('Item successfully updated. ');
+    //   inform('Item successfully updated. ');
       break;
   }
   if (writeToFile) {

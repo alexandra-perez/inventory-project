@@ -14,7 +14,8 @@
   "author": "Alexandra Perez",
   "license": "ISC",
   "dependencies": {
-    "readline": "^1.4.0",
-    "nanoid": "^3.3.7"
+    "chalk": "^3.0.0",
+    "nanoid": "^3.3.7",
+    "readline": "^1.2.4"
   }
 }
