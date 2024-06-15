@@ -37,7 +37,7 @@ function create(items, itemName, priceInCents, itemAvailability) {
   return items;
 }
 
-// Show an individual item by id
+// Show an individual item by ID
 function show(items, itemId) {
   const item = items.find((item) => item.id === itemId);
   return (
@@ -51,29 +51,35 @@ function show(items, itemId) {
   );
 }
 
+// Update item by ID
 function update(items) {
-  return rl.question(
-    `${chalk.green('Enter item ID to update: ')}`,
-    (itemId) => {
+  rl.question(`${chalk.green('Enter item ID to update: ')}`, (itemId) => {
+    const itemIndex = items.findIndex((item) => item.id === itemId);
+    if (itemIndex === -1) {
+      console.log(chalk.red('Item not found.'));
+    } else {
       rl.question(`${chalk.green('Enter new name: ')}`, (newName) => {
-        rl.question(`${chalk.green('Enter new price in cents: ')}`, (newPriceInCents) => {
-          rl.question(`${chalk.green('Is it in stock? (true/false); ')}`, (newAvailability) => {
-            const itemIndex = items.findIndex((item) => item.id === itemId);
-            if (itemIndex === -1) {
-              console.log(chalk.red('Item not found.'));
-            } else {
-              items[itemIndex].name = newName;
-              items[itemIndex].priceInCents = newPriceInCents;
-              items[itemIndex].inStock = newAvailability.toLowerCase().trim();
-            }
-            writeJSONFile('./data', 'items.json', items);
-              console.log(chalk.green('Item successfully updated. '));
-            rl.close();
-          });
-        });
+        rl.question(
+          `${chalk.green('Enter new price in cents: ')}`,
+          (newPriceInCents) => {
+            rl.question(
+              `${chalk.green('Is it in stock? (true/false): ')}`,
+              (newAvailability) => {
+                items[itemIndex].name = newName;
+                items[itemIndex].priceInCents = newPriceInCents;
+                items[itemIndex].itemAvailability = newAvailability
+                  .toLowerCase()
+                  .trim();
+                writeJSONFile('./data', 'items.json', items);
+                console.log(chalk.green('Item successfully updated.'));
+                rl.close();
+              }
+            );
+          }
+        );
       });
     }
-  );
+  });
 }
 
 module.exports = { index, create, show, update };
