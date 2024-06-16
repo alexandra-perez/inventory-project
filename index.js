@@ -4,7 +4,14 @@ const {
   readJSONFile,
   writeJSONFile,
 } = require('./src/helpers');
-const { index, create, show, update } = require('./src/itemController');
+const {
+  index,
+  create,
+  show,
+  update,
+  destroy,
+} = require('./src/itemController');
+const chalk = require('chalk');
 
 function run() {
   const inform = console.log;
@@ -36,6 +43,10 @@ function run() {
       break;
     case 'update':
       updatedItems = update(items);
+      break;
+    case 'delete':
+      updatedItems = destroy(items);
+      writeToFile = true;
       break;
   }
   if (writeToFile) {

@@ -8,7 +8,7 @@
     "create": "node index.js create",
     "show": "node index.js show",
     "update": "node index.js update",
-    "destroy": "node index.js destroy"
+    "delete": "node index.js delete"
   },
   "keywords": [],
   "author": "Alexandra Perez",

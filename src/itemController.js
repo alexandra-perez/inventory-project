@@ -40,7 +40,9 @@ function create(items, itemName, priceInCents, itemAvailability) {
 // Show an individual item by ID
 function show(items, itemId) {
   const item = items.find((item) => item.id === itemId);
-  return `${chalk.magenta(item.name)} ${chalk.blue(item.id)} ${chalk.green(item.priceInCents)} ${chalk.red(item.itemAvailability)}`;
+  return `${chalk.magenta(item.name)} ${chalk.blue(item.id)} ${chalk.green(
+    item.priceInCents
+  )} ${chalk.red(item.itemAvailability)}`;
 }
 
 // Update item by ID
@@ -63,7 +65,10 @@ function update(items) {
                   .toLowerCase()
                   .trim();
                 writeJSONFile('./data', 'items.json', items);
-                console.log(chalk.green("\nItem successfully updated. \n"), "\nRun the command 'npm run show' with the item's ID to view.");
+                console.log(
+                  chalk.green('\nItem successfully updated. \n'),
+                  "\nRun the command 'npm run show' with the item's ID to view."
+                );
                 rl.close();
               }
             );
@@ -74,4 +79,18 @@ function update(items) {
   });
 }
 
-module.exports = { index, create, show, update };
+// Delete item by ID
+function destroy(items, itemId) {
+  const index = items.findIndex((item) => item.id === itemId);
+  if (index > -1) {
+    items.splice(index, 1);
+    console.log(chalk.green('Item successfully deleted.'));
+    return items;
+  }
+  console.log(
+    chalk.red('No item found. Please verify the ID provided is correct.')
+  );
+  return [];
+}
+
+module.exports = { index, create, show, update, destroy };
