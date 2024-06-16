@@ -63,7 +63,7 @@ function update(items) {
                   .toLowerCase()
                   .trim();
                 writeJSONFile('./data', 'items.json', items);
-                console.log(chalk.green('Item successfully updated.'));
+                console.log(chalk.green("\nItem successfully updated. \n"), "\nRun the command 'npm run show' with the item's ID to view.");
                 rl.close();
               }
             );
