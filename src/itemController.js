@@ -40,7 +40,7 @@ function create(items, itemName, priceInCents, itemAvailability) {
 // Show an individual item by ID
 function show(items, itemId) {
   const item = items.find((item) => item.id === itemId);
-  return `${chalk.pink(item.name)} ${chalk.blue(item.id)} ${chalk.green(item.priceInCents)} ${chalk.red(item.itemAvailability)}`;
+  return `${chalk.magenta(item.name)} ${chalk.blue(item.id)} ${chalk.green(item.priceInCents)} ${chalk.red(item.itemAvailability)}`;
 }
 
 // Update item by ID
