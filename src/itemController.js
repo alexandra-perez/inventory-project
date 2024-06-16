@@ -93,4 +93,37 @@ function destroy(items, itemId) {
   return [];
 }
 
-module.exports = { index, create, show, update, destroy };
+function addToCart(items, itemId, shoppingCart) {
+  const index = items.findIndex((item) => item.id === itemId);
+  if (index == -1) {
+    console.log(
+      chalk.red('No item found. Please verify the ID provided is correct.')
+    );
+    return [];
+  }
+  shoppingCart.push(items[index]);
+  const totalPrice = shoppingCart.reduce(
+    (acc, curr) => acc + curr.priceInCents,
+    0
+  );
+  const totalItems = shoppingCart.length.toString();
+  console.log(chalk.yellow.underline.bold('My Cart:'));
+  console.log(
+    shoppingCart
+      .map((item) => {
+        return item.inStock == 'true'
+          ? chalk.white(`+ ${item.name} ${item.id} ${item.priceInCents}`)
+          : chalk.red(`- ${item.name} ${item.id} ${item.priceInCents}`);
+      })
+      .join('\n')
+  );
+  console.log(
+    `${chalk.yellow.underline.bold('Cart Total:')} ${chalk.yellow.bold(
+      `${totalItems} item(s)`
+    )}`
+  );
+
+  return shoppingCart;
+}
+
+module.exports = { index, create, show, update, destroy, addToCart };

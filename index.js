@@ -10,12 +10,14 @@ const {
   show,
   update,
   destroy,
+  addToCart,
 } = require('./src/itemController');
 const chalk = require('chalk');
 
 function run() {
   const inform = console.log;
   const items = readJSONFile('./data', 'items.json');
+  const shoppingCart = readJSONFile('./data', 'shoppingCart.json');
   const action = process.argv[2];
 
   const item = process.argv[3];
@@ -24,6 +26,7 @@ function run() {
 
   let writeToFile = false;
   let updatedItems = [];
+  let shoppingCartView = [];
 
   switch (action) {
     case 'index':
@@ -47,6 +50,10 @@ function run() {
     case 'delete':
       updatedItems = destroy(items);
       writeToFile = true;
+      break;
+    case 'add':
+      shoppingCartView = addToCart(items, process.argv[3], shoppingCart);
+      writeJSONFile('./data', 'shoppingCart.json', shoppingCartView);
       break;
   }
   if (writeToFile) {
