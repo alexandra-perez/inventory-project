@@ -103,7 +103,7 @@ function addToCart(items, itemId, shoppingCart) {
   }
   shoppingCart.push(items[index]);
   const totalPrice = shoppingCart.reduce(
-    (acc, curr) => acc + curr.priceInCents,
+    (acc, curr) => acc + parseInt(curr.priceInCents),
     0
   );
   const totalItems = shoppingCart.length.toString();
@@ -118,8 +118,8 @@ function addToCart(items, itemId, shoppingCart) {
       .join('\n')
   );
   console.log(
-    `${chalk.yellow.underline.bold('Cart Total:')} ${chalk.yellow.bold(
-      `${totalItems} item(s)`
+    `${chalk.yellow.underline.bold('Cart Total:')}\n${chalk.white.bold(
+    `${totalItems} item(s)\n$${parseInt(totalPrice, 10 / 100)}`
     )}`
   );
 
