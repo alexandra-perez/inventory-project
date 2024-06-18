@@ -11,6 +11,7 @@ const {
   update,
   destroy,
   addToCart,
+  cancelCart,
 } = require('./src/itemController');
 const chalk = require('chalk');
 
@@ -53,6 +54,10 @@ function run() {
       break;
     case 'add':
       shoppingCartView = addToCart(items, process.argv[3], shoppingCart);
+      writeJSONFile('./data', 'shoppingCart.json', shoppingCartView);
+      break;
+    case 'cancel':
+      shoppingCartView = cancelCart(shoppingCart);
       writeJSONFile('./data', 'shoppingCart.json', shoppingCartView);
       break;
   }

@@ -93,6 +93,7 @@ function destroy(items, itemId) {
   return [];
 }
 
+// Add item to Shopping Cart
 function addToCart(items, itemId, shoppingCart) {
   const index = items.findIndex((item) => item.id === itemId);
   if (index == -1) {
@@ -119,11 +120,27 @@ function addToCart(items, itemId, shoppingCart) {
   );
   console.log(
     `${chalk.yellow.underline.bold('Cart Total:')}\n${chalk.white.bold(
-    `${totalItems} item(s)\n$${parseInt(totalPrice, 10 / 100)}`
+      `${totalItems} item(s)\n$${parseInt(totalPrice, 10 / 100)}`
     )}`
   );
 
   return shoppingCart;
 }
 
-module.exports = { index, create, show, update, destroy, addToCart };
+function cancelCart(shoppingCart) {
+  while (shoppingCart.length > 0) {
+    shoppingCart.pop();
+  }
+  console.log(chalk.red('Shopping cart cleared.'));
+  return shoppingCart;
+}
+
+module.exports = {
+  index,
+  create,
+  show,
+  update,
+  destroy,
+  addToCart,
+  cancelCart,
+};
